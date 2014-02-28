@@ -21,10 +21,7 @@ class Firmware(base.BaseFirmware):
         self.throttle = 100
         logging.debug("Current throttle: {}".format(self.throttle))
         # Turn 45 degrees every turn
-        if self.heading + 45 > 359:
-            self.heading -= 314
-        else:
-            self.heading += 45
+        self.heading = (self.heading + 45) % 360
         logging.debug("Current heading: {}".format(self.heading))
 
     def fire_on_closest_ship(self):
