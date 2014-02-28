@@ -8,7 +8,12 @@ class Firmware(base.BaseFirmware):
         the class data has been set up from the JSON. Look at debug.log to
         see the debugging information.
         """
-        logging.debug("Woo!")
+        if self.throttle > 100:
+            self.throttle -= 40
+        else:
+            self.throttle += 5
+            
+        self.heading = (self.heading + 5) % 360
 
 
 if __name__ == "__main__":
